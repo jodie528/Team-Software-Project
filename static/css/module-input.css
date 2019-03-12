@@ -1,0 +1,9 @@
+.main-content-container {margin: 20px;background-color:#ffffff;min-height:700px;}
+
+.tftable {width:100%;border-width: 0px;border-collapse: collapse;}
+.tftable th {background-color:#ffffff;padding: 8px;text-align:left;}
+.tftable tr {background-color:#ffffff;}
+.tftable td {padding: 8px;height:60px;}
+
+textarea {width:400px;height:50px;}
+input {width:200px;}

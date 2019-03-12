@@ -1,0 +1,60 @@
+
+html,body{
+	margin: 0px;
+	padding: 0px;
+	color:#000;  /*text color */
+	background-color: #f1fbee;
+}
+
+.banner-icon{
+	color: white;
+	font-size:20px;
+}
+
+.fa-home {
+	margin-left:20px;
+}
+
+#signout {
+	color:white;
+	float:right;
+	margin-right:20px;
+	text-decoration:none;
+}
+
+.wrapper{
+	max-width: 1200px;  /*网页主体部分宽度 */
+	margin:0px auto;  /*水平居中*/
+}
+
+.banner{
+	height: 40px;
+	background-color: #1d3557;
+	line-height: 40px;
+	margin-bottom: 20px; /*banner与主内容wrapper间的距离*/
+}
+
+.sidebar {
+	width: 380px; /*左边栏宽度*/
+	margin-right: 20px; /*边栏间距*/
+	display: inline; /*防止IE6双边距*/
+	float: left;
+	margin-bottom: 20px; /*边栏与footer之间的垂直距离*/
+	min-height:700px;
+	/*background-color:#ffffff;*/
+}
+ 
+.main-content {
+	width: 800px; /*主内容宽度*/
+	display: inline; /*防止IE6双边距*/
+	float: right;
+	margin-bottom: 20px; /*主内容与footer之间的垂直距离*/
+	/*background-color:#ffffff;*/
+	min-height:700px;
+}
+ 
+.footer {
+	clear: both; /*清除浮动*/
+	background-color:#1d3557;
+	height: 40px;
+}
