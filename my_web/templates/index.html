@@ -37,10 +37,10 @@
 					<li style="float: right; margin-right: 20px"><a href="#tabs-2" style="width: 100px; text-align: center;">Modules</a></li>
 				</ul>
 				<div id="tabs-1">
-					<a id="add_program" href="">Add program</a>
+					<a id="add_program" href="/Programme">Add program</a>
 				</div>
 				<div id="tabs-2">
-					<a id="add_module" href="">Add module</a>
+					<a id="add_module" href="/module_input">Add module</a>
 				</div>
 			</div>
 		</div>    
@@ -117,14 +117,14 @@ function show_info(e){
 	var title = $("<h1></h1>").text(e.data.code+" "+e.data.name);
 	title.css("font-family", "Times, TimesNR, Serif");
 	display_area.append(title);
-	var table = $("<table></table>").css({"border":"5px transparent", "table-layout":"fixed"});
+	var table = $("<table></table>").css({"table-layout":"fixed", "margin-left":"10px"});
 	for (var o in e.data){
 		// display non-array contents
 		if (jQuery.type(e.data[o]) == "string") {
 			if (o!="name" && o!="code") {
 				var line = $("<tr></tr>");
-				var left = $("<td></td>").text(o).css({"font-weight": "bold", "width":"100px", "margin-left":"10px", "background-color" : "#447d9d", "color":"#fff", "word-wrap":"break-word"});
-				var right = $("<td></td>").text(e.data[o]).css({"word-wrap":"break-word"});
+				var left = $("<td></td>").text(o).css({"font-weight": "bold", "width":"100px", "background-color" : "#447d9d", "color":"#fff", "word-wrap":"break-word", "border":"1px solid white"});
+				var right = $("<td></td>").text(e.data[o]).css({"word-wrap":"break-word", "padding-left":"15px", "width":"600px", "border":"1px solid white"});
 				line.append(left, right);
 				table.append(line);
 			}
