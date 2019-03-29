@@ -22,9 +22,9 @@ def index(request):
         data["modules"].append({"name": modules[i].title, "code": modules[i].code, "session": modules[i].smester_taught})
 
     # info of program
-    l_pro = len(programs)
-    for i in range(l):
-        data["programs"].append()
+    # l_pro = len(programs)
+    # for i in range(l_pro):
+    #     data["programs"].append()
 
     return render(request, 'index.html', {'data': data})
 
