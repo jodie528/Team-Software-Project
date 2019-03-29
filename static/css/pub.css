@@ -4,6 +4,7 @@ html,body{
 	padding: 0px;
 	color:#000;  /*text color */
 	background-color: #f1fbee;
+	font-size:16px;
 }
 
 .banner-icon{
@@ -49,7 +50,7 @@ html,body{
 	display: inline; /*防止IE6双边距*/
 	float: right;
 	margin-bottom: 20px; /*主内容与footer之间的垂直距离*/
-	/*background-color:#ffffff;*/
+	background-color:#ffffff;
 	min-height:700px;
 }
  

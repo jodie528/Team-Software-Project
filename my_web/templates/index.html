@@ -4,9 +4,10 @@
 	<title>Project name</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="../../static/css/pub.css">
+	<link rel="stylesheet" href="../../static/css/index.css">
 	<link rel="stylesheet" href="../../static/css/jquery-ui.min.css">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity=
+	"sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 
 <body>
@@ -25,6 +26,8 @@
 	<div class="wrapper">
 		<!-- 主体的右边栏 -->
 		<div class="main-content">
+		<div id="main-content-container">
+		</div>
 		</div>
 		<!-- 主体的左边栏 -->
 		<div class="sidebar">
@@ -34,10 +37,10 @@
 					<li style="float: right; margin-right: 20px"><a href="#tabs-2" style="width: 100px; text-align: center;">Modules</a></li>
 				</ul>
 				<div id="tabs-1">
-					<p>programs list</p>
+					<a id="add_program" href="">Add program</a>
 				</div>
 				<div id="tabs-2">
-					<p>modules list</p>
+					<a id="add_module" href="">Add module</a>
 				</div>
 			</div>
 		</div>    
@@ -50,6 +53,85 @@
 	"sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity=
 	"sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-	<script src="../../static/js/index.js"></script>
+
+<script>
+$( function() {
+	// jquery-ui绑定
+	$( "#tabs" ).tabs();
+	$( "#add_program" ).button();
+	$( "#add_module" ).button();
+	var all_info_json  = {{ data|safe }};
+	// var all_info_json = JSON.parse(received_data);
+	/*
+	var all_info_json=
+	{
+		"programs":
+		[
+			{ "name":"program1",
+			  "code":"ABCDE",
+			  "location":"xxxxx",
+			  "aim":[{"id":"1", "content":"aim_1_contents", "match":"1 2"}, {"id":"2", "content":"aim_2_contents", "match":"3"}],
+			  "outcome":[{"id":"1", "content":"xxxx"}, {"id":"2", "content":"xxxx"}]
+			},
+			{ "name":"program2" , "code":"ABCDE", "location":"xxxxx"},
+			{ "name":"program3" , "code":"ABCDE", "location":"xxxxx"}
+		],
+		"modules":
+		[
+			{ "name":"module1" , "code":"ABCDE", "location":"xxxxx"},
+			{ "name":"module2" , "code":"ABCDE", "location":"xxxxx"},
+			{ "name":"module3" , "code":"ABCDE", "location":"xxxxx"}
+		]
+	};
+	*/
+	
+	add_item('#tabs-1', '#tabs-2', all_info_json);
+} );
+
+// 
+function add_item(program_dom_id, module_dom_id, all_info_json){
+	/*
+	for (var i = 0; i < all_info_json.programs.length; i++) {
+		var program_json = all_info_json.programs[i];
+		var $node = $("<p></p>").text(program_json.name);
+		$node.css('cursor', 'pointer');
+		$node.click(program_json, show_info);
+		$(program_dom_id).prepend($node);
+	}
+	*/
+	
+	for (var i = 0; i < all_info_json.modules.length; i++) {
+		var modules_json = all_info_json.modules[i];
+		var $node = $("<p></p>").text(modules_json.title);
+		$node.css('cursor', 'pointer');
+		$node.click(modules_json, show_info);
+		$(module_dom_id).prepend($node);
+	}
+}
+
+function show_info(e){
+　　display_area = $("#main-content-container");
+	display_area.empty();
+	// show name
+	display_area.append($("<h1></h1>").text(e.data.title));
+	for (var o in e.data){
+		// display non-array contents
+		if (jQuery.type(e.data[o]) == "string")
+			display_area.append($("<p></p>").text(o+": "+e.data[o]));
+		// look for the content property in array
+		/*
+		else {
+			display_area.append($("<p></p>").text(o+":"));
+			for (var i=0; i<e.data[o].length; i++)
+				display_area.append($("<p></p>").text(e.data[o][i].content));
+		}
+		*/
+	}
+}
+
+
+</script>
+	
+	
 </body>
 </html>
