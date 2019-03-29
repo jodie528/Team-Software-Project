@@ -90,22 +90,23 @@ $( function() {
 
 // 
 function add_item(program_dom_id, module_dom_id, all_info_json){
-	/*
-	for (var i = 0; i < all_info_json.programs.length; i++) {
-		var program_json = all_info_json.programs[i];
-		var $node = $("<p></p>").text(program_json.name);
-		$node.css('cursor', 'pointer');
-		$node.click(program_json, show_info);
-		$(program_dom_id).prepend($node);
+	if ("programs" in all_info_json){
+		for (var i = 0; i < all_info_json.programs.length; i++) {
+			var program_json = all_info_json.programs[i];
+			var $node = $("<p></p>").text(program_json.name);
+			$node.css('cursor', 'pointer');
+			$node.click(program_json, show_info);
+			$(program_dom_id).prepend($node);
+		}
 	}
-	*/
-	
-	for (var i = 0; i < all_info_json.modules.length; i++) {
-		var modules_json = all_info_json.modules[i];
-		var $node = $("<p></p>").text(modules_json.title);
-		$node.css('cursor', 'pointer');
-		$node.click(modules_json, show_info);
-		$(module_dom_id).prepend($node);
+	if ("modules" in all_info_json){
+		for (var i = 0; i < all_info_json.modules.length; i++) {
+			var modules_json = all_info_json.modules[i];
+			var $node = $("<p></p>").text(modules_json.name);
+			$node.css('cursor', 'pointer');
+			$node.click(modules_json, show_info);
+			$(module_dom_id).prepend($node);
+		}
 	}
 }
 
@@ -113,11 +114,17 @@ function show_info(e){
 　　display_area = $("#main-content-container");
 	display_area.empty();
 	// show name
-	display_area.append($("<h1></h1>").text(e.data.title));
+	display_area.append($("<h1></h1>").text(e.data.name)).css("font-family", "Times, TimesNR, Serif");
 	for (var o in e.data){
 		// display non-array contents
-		if (jQuery.type(e.data[o]) == "string")
-			display_area.append($("<p></p>").text(o+": "+e.data[o]));
+		if (jQuery.type(e.data[o]) == "string") {
+			if (o!="name") {
+				var left = $("<span></span>").text(o+": ").css({"font-weight": "bold", "display":"inline-block", "min-width":"100px", "margin-left":"10px"});
+				var right = $("<span></span>").text(e.data[o]);
+				var whole = $("<p></p>").append(left, right)
+				display_area.append(whole);
+			}
+		}
 		// look for the content property in array
 		/*
 		else {
