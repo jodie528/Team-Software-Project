@@ -68,3 +68,60 @@ class mod_requisites(models.Model):
     excluded = models.CharField(max_length=32)
     mod = models.ForeignKey('module_info', on_delete=models.CASCADE)
 
+# program
+
+class Aims(models.Model):
+    class Meta:
+        verbose_name_plural = 'Aims'
+
+    aim = models.TextField(default='')
+
+    def __str__(self):
+        return self.aim
+
+
+class Learnoutcomes(models.Model):
+    class Meta:
+        verbose_name_plural = 'Learning outcomes'
+
+    l_outcomes = models.TextField(default='')
+    aims = models.ForeignKey('Aims', on_delete=False, null=True)
+
+    def __str__(self):
+        return self.l_outcomes
+
+
+class Program_cont(models.Model):
+    class Meta:
+        verbose_name_plural = 'Program contents'
+
+    Program_title = models.CharField(max_length=32)
+    Program_code = models.CharField(max_length=32)
+    JACS_Code = models.CharField(max_length=32)
+    Level_of_study = models.CharField(max_length=32)
+    Final_Qualification = models.CharField(max_length=32)
+    QAA_FHEQ_Level = models.CharField(max_length=32)
+    Intermediate_Qualification = models.CharField(max_length=120)
+    Teaching_Institution = models.CharField(max_length=32)
+    Faculty = models.CharField(max_length=32)
+    Department = models.CharField(max_length=32)
+    Other_Department_involved_in_teaching_the_programm = models.CharField(max_length=32)
+    Mode_of_Attendnce = models.CharField(max_length=32)
+    Duration_of_the_Programme = models.CharField(max_length=32)
+    Date_of_production = models.CharField(max_length=32)
+    Accrediting_Professional_or_Statutory_Body = models.CharField(max_length=32)
+    Background_to_the_programme_and_subject_area = models.TextField(default='')
+    Teaching_learning_and_assessment = models.TextField(default='')
+    aims1 = models.ForeignKey('Aims', on_delete=False, null=True)
+    aims2 = models.ForeignKey('Aims', on_delete=False, related_name='topic_content_type', null=True)
+    aims3 = models.ForeignKey('Aims', on_delete=False, related_name='topic_content_typ', null=True)
+    aims4 = models.ForeignKey('Aims', on_delete=False, related_name='topic_content_ty', null=True)
+    aims5 = models.ForeignKey('Aims', on_delete=False, related_name='topic_content_t', null=True)
+    l_outcomes1 = models.ForeignKey('Learnoutcomes', on_delete=False, null=True)
+    l_outcomes2 = models.ForeignKey('Learnoutcomes', on_delete=False, related_name='topic_con', null=True)
+    l_outcomes3 = models.ForeignKey('Learnoutcomes', on_delete=False, related_name='topic_content', null=True)
+    l_outcomes4 = models.ForeignKey('Learnoutcomes', on_delete=False, related_name='topic_conten', null=True)
+    l_outcomes5 = models.ForeignKey('Learnoutcomes', on_delete=False, related_name='topic_conte', null=True)
+
+    def __str__(self):
+        return self.Program_title

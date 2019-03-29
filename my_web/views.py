@@ -4,16 +4,28 @@ from . import models
 import json
 
 def index(request):
-    data = {}
     #data["modules"] = list(models.module_info.objects.values())
-    # data["modules"] = list(models.module_info.objects.all())
     # data["modules"] = list(models.module_info.objects.values('title', 'code', 'smester_taught'))
+
+    # create a dic used for info display
+    data = {"modules": [], "programs":[]}
+
+    # get all basic information of modules
     modules = models.module_info.objects.all()
-    data = {"modules": []}
+
+    # get all basic information of programmes
+    programs = models.Program_cont.objects.all()
+
+    # info of module
     l = len(modules)
     for i in range(l):
         data["modules"].append({"name": modules[i].title, "code": modules[i].code, "session": modules[i].smester_taught})
-    # # js_data = json.dumps(data)
+
+    # info of program
+    l_pro = len(programs)
+    for i in range(l):
+        data["programs"].append()
+
     return render(request, 'index.html', {'data': data})
 
 
