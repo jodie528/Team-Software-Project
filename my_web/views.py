@@ -28,6 +28,11 @@ def index(request):
 
     return render(request, 'index.html', {'data': data})
 
+def program_input(request):
+    return render(request, 'program_input.html')
+
+def module_input(request):
+    return render(request, 'module_input.html')
 
 
 
